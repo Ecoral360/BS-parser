@@ -1,7 +1,3 @@
-# ASCore
-The core behind the AliveScript programming langugage
-
-### Setup et Installation
-1. installer JDK17
-2. installer Intellij
+# Bs parser
+See https://www.youtube.com/watch?v=vcFBwt1nu2U&t=3178s
 
