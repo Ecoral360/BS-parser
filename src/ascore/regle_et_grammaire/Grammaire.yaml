@@ -1,0 +1,17 @@
+Ajouter:
+  ECHO: '\becho\b'
+
+  DELETE: '\bDelete\b'
+
+  ASSIGN: '='
+
+  type:
+    INT: '\d+'
+    FLOAT: '(\d+\.\d+)|(\D\.\d+)|(\d+\.\D)'
+
+  VARIABLE: '€(?:\w|_)+'
+  TAB: '\t'
+  SPACE: ' '
+
+Ignorer:
+  - '\s+'

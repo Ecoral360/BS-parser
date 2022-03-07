@@ -1,0 +1,11 @@
+Ajouter:
+  SHOW: '\bshow\b'  # règle SHOW avec pattern '\bshow\b'
+
+  donnee: # catégorie 'donnee'
+    ENTIER: '\d+'  # règle ENTIER avec pattern '\d+' dans la catégorie 'donnee'
+    TEXTE: '".*?"' # règle TEXTE avec pattern '".*?"' dans la catégorie 'donnee'
+
+  PLUS: '\+'  # règle PLUS avec pattern '\+'
+
+Ignorer:
+  - '\s+' # pattern à ignorer '\+'
