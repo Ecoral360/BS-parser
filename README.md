@@ -6,9 +6,10 @@ See https://www.youtube.com/watch?v=vcFBwt1nu2U&t=3178s
 
 1. Clone the repo
 2. Open in Intellij
-3. The `main` is in src/Main.java
-4. Change the code in YOUR_BS_PROGRAM to make some BS!
-5. _(Sorry if some error messages or in french, this project is from my other project,
+3. (You may need to link the dependencies in the _lib_ directory)
+4. The `main` is in src/Main.java
+5. Change the code in YOUR_BS_PROGRAM to make some BS!
+6. _(Sorry if some error messages or in french, this project is from my other project,
    AliveScript: https://github.com/ALIVEcode/ALIVEcode/tree/master/Interpreteur)_
 
 ### "Features":
