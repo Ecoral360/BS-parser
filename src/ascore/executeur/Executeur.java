@@ -9,7 +9,6 @@ import ascore.as.lang.managers.ASFonctionManager;
 import ascore.as.modules.core.ASModuleManager;
 import ascore.ast.buildingBlocs.Programme;
 import ascore.data_manager.Data;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -43,17 +42,8 @@ afficher "fin"
  * @author Mathis Laroche
  */
 public class Executeur {
-
-    private final static int MAX_DATA_BEFORE_SEND;
     // coordonne ou commencer tous les programmes
     final private static Coordonnee debutCoord = new Coordonnee("<0>main");
-
-    static {
-        Dotenv dotenv = Dotenv.configure()
-                .directory("./.env")
-                .load();
-        MAX_DATA_BEFORE_SEND = Integer.parseInt(dotenv.get("MAX_DATA_BEFORE_SEND"));
-    }
 
     // lexer et parser
     private final ASLexer lexer;
@@ -89,10 +79,11 @@ public class Executeur {
     public static void main(String[] args) {
 
         String[] lines = """
-                €msg = "hello world!";
-                echo "hey!";
-                HALT_AND_CATCH_FIRE;
-                echo €msg;
+                function say(€msg):
+                    echo €msg
+                ;
+                
+                say(13)
                 """.split("\n");
 
 
@@ -154,7 +145,7 @@ public class Executeur {
 
     // methode utilisee a chaque fois qu'une info doit etre afficher par le langage
     public void ecrire(String texte) {
-        if (debug) System.out.println(texte);
+        System.out.println(texte);
     }
 
     public void printCompileDict() {
@@ -531,12 +522,6 @@ public class Executeur {
                 } else if (resultat != null && !coordRunTime.getScope().equals("main")) {
                     // ne sera vrai que si l'on retourne d'une fonction
                     break;
-                }
-
-                if (datas.size() >= MAX_DATA_BEFORE_SEND) {
-                    synchronized (datas) {
-                        return datas.toString();
-                    }
                 }
             } catch (StopSendData e) {
                 return e.getDataString();

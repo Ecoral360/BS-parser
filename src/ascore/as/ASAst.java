@@ -121,7 +121,7 @@ public class ASAst extends AstGenerator {
                     }
                 });
 
-        ajouterProgramme("GREEK_SEMI_COLON", (p, __) -> new FinFonction(executeurInstance));
+        ajouterProgramme("END_FUNCTION no-stmt-sep", (p, __) -> new FinFonction(executeurInstance));
     }
 
     protected void ajouterExpressions() {

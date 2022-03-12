@@ -326,8 +326,11 @@ public class AstGenerator {
         for (String programme : pattern.split("~")) {
             ast.setImportance(cptrProg++);
             String nouveauPattern = remplacerCategoriesParMembre(programme);
-            if (this.stmtSeparator != null)
+            if (nouveauPattern.endsWith("no-stmt-sep")) {
+                nouveauPattern = nouveauPattern.replaceAll(" *no-stmt-sep", "");
+            } else if (this.stmtSeparator != null) {
                 nouveauPattern = nouveauPattern + " " + this.stmtSeparator;
+            }
             programmesDict.put(nouveauPattern, ast); // remplace les categories par ses membres, s'il n'y a pas de categorie, ne modifie pas le pattern
             ordreProgrammes.add(nouveauPattern);
         }

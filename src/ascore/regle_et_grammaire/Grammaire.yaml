@@ -6,6 +6,7 @@ Ajouter:
   PUBLIC: '\bpublic\b'
 
   FUNCTION: '\bfunction\b'
+  END_FUNCTION: '\bend function\b'
 
   DELETE: '\bDelete\b'
 
@@ -30,6 +31,9 @@ Ajouter:
   PARENT_OPEN: '\('
   PARENT_CLOSE: '\)'
 
+  BRACKET_OPEN: '\{'
+  BRACKET_CLOSE: '\}'
+
   GREEK_SEMI_COLON: '\u037E'
 
   VARIABLE: '€(?:\w|_)+'
@@ -41,7 +45,7 @@ Ajouter:
   SEMI_COLON: ';'
 
 Ignorer:
-  - '[ \n]+'
+  - '\s+'
 
 
 
