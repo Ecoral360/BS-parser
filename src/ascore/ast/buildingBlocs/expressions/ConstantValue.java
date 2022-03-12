@@ -4,7 +4,7 @@ import ascore.as.lang.datatype.ASObjet;
 import ascore.as.lang.datatype.ASTexte;
 import ascore.ast.buildingBlocs.Expression;
 
-public record ValeurConstante(ASObjet<?> val) implements Expression<ASObjet<?>> {
+public record ConstantValue(ASObjet<?> val) implements Expression<ASObjet<?>> {
 
     @Override
     public ASObjet<?> eval() {

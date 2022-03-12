@@ -2,15 +2,11 @@ package ascore.as;
 
 import ascore.as.erreurs.ASErreur;
 import ascore.as.lang.ASType;
-import ascore.as.lang.datatype.ASEntier;
+import ascore.as.lang.datatype.*;
 import ascore.ast.Ast;
 import ascore.ast.buildingBlocs.Expression;
 import ascore.ast.buildingBlocs.Programme;
-import ascore.ast.buildingBlocs.exemple.expressions.ExprEntier;
-import ascore.ast.buildingBlocs.expressions.AppelFonc;
-import ascore.ast.buildingBlocs.expressions.Argument;
-import ascore.ast.buildingBlocs.expressions.CreerListe;
-import ascore.ast.buildingBlocs.expressions.Var;
+import ascore.ast.buildingBlocs.expressions.*;
 import ascore.ast.buildingBlocs.programmes.CreerFonction;
 import ascore.ast.buildingBlocs.programmes.Declarer;
 import ascore.ast.buildingBlocs.programmes.Echo;
@@ -131,11 +127,24 @@ public class ASAst extends AstGenerator {
     protected void ajouterExpressions() {
         // ajouter vos expressions ici
         ajouterExpression("VARIABLE~FUNCTION_NAME", (p, __) -> new Var(((Token) p.get(0)).getValeur()));
-        ajouterExpression("INT", (p, __) -> new ExprEntier(new ASEntier((Token) p.get(0))));
+
+        ajouterExpression("{data_type}", (p, __) -> {
+            Token valeur = (Token) p.get(0);
+            String nom = valeur.getNom();
+            return new ConstantValue(switch (nom) {
+                case "INT" -> new ASEntier(valeur);
+                case "FLOAT" -> new ASDecimal(valeur);
+                case "STRING" -> new ASTexte(valeur);
+                case "BOOLEAN" -> new ASBooleen(valeur);
+                case "NULL_VALUE" -> new ASNul();
+                default -> throw new ASErreur.ErreurType("Invalid data type");
+            });
+        });
+
         ajouterExpression("expression PARENT_OPEN #expression PARENT_CLOSE~"
                           + "expression PARENT_OPEN PARENT_CLOSE",
-                (p, __) -> {
-                    if (p.size() == 3) {
+                (p, idxVariant) -> {
+                    if (idxVariant == 1) {
                         return new AppelFonc((Expression<?>) p.get(0), new CreerListe());
                     }
                     Hashtable<String, Ast<?>> astParams = new Hashtable<>();
@@ -148,6 +157,8 @@ public class ASAst extends AstGenerator {
 
                     return new AppelFonc((Expression<?>) p.get(0), args);
                 });
+
+        ajouterExpression("HALT_AND_CATCH_FIRE", (p, __) -> new HaltAndCatchFireExpression());
     }
 }
 

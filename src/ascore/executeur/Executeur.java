@@ -89,7 +89,10 @@ public class Executeur {
     public static void main(String[] args) {
 
         String[] lines = """
-                echo €msg
+                €msg = "hello world!";
+                echo "hey!";
+                HALT_AND_CATCH_FIRE;
+                echo €msg;
                 """.split("\n");
 
 

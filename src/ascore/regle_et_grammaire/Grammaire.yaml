@@ -21,9 +21,10 @@ Ajouter:
   ASSIGN: '='
   UNLESS: '\bunless\b'
 
-  type:
+  data_type:
     INT: '\d+'
     FLOAT: '(\d+\.\d+)|(\D\.\d+)|(\d+\.\D)'
+    STRING: '".*?"|''.*?'''
     NULL_VALUE: '\bnull\b'
 
   PARENT_OPEN: '\('
