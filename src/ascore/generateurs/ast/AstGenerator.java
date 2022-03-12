@@ -29,6 +29,8 @@ public class AstGenerator {
 
     static Hashtable<String, Ast<?>> expressionsDict = new Hashtable<>();
     static ArrayList<String> ordreExpressions = new ArrayList<>();
+    protected String stmtSeparator = null;
+
     private int cptrExpr = 0;
     private int cptrProg = 0;
 
@@ -205,9 +207,9 @@ public class AstGenerator {
                             //System.out.println(memeStructure(String.join(" ", expressionNom.subList(debut, fin)), expression).toString());
                             //System.out.println(expressionArray);
                             if ((regleSyntaxe.startsWith("expression") &&
-                                    (!(expressionArray.get(debut) instanceof Expression<?>))
-                                    ||
-                                    expressionArray.get(debut) == null)
+                                 (!(expressionArray.get(debut) instanceof Expression<?>))
+                                 ||
+                                 expressionArray.get(debut) == null)
                             ) {
                                 i++;
                                 continue;
@@ -324,6 +326,8 @@ public class AstGenerator {
         for (String programme : pattern.split("~")) {
             ast.setImportance(cptrProg++);
             String nouveauPattern = remplacerCategoriesParMembre(programme);
+            if (this.stmtSeparator != null)
+                nouveauPattern = nouveauPattern + " " + this.stmtSeparator;
             programmesDict.put(nouveauPattern, ast); // remplace les categories par ses membres, s'il n'y a pas de categorie, ne modifie pas le pattern
             ordreProgrammes.add(nouveauPattern);
         }
@@ -404,7 +408,6 @@ public class AstGenerator {
 
         var expressions = new ArrayList<>(expressions_programme.subList(0, expressions_programme.size() - 1));
         var programmeToken = expressions_programme.get(expressions_programme.size() - 1);
-
 
         var arbre = eval(
                 expressions.stream().map(e -> (Object) e).collect(Collectors.toCollection(ArrayList::new)),

@@ -1,8 +1,9 @@
 package ascore.as.modules.builtins;
 
-import ascore.as.lang.ASConstante;
-import ascore.as.lang.ASFonctionModule;
-import ascore.as.lang.ASVariable;
+import ascore.as.lang.*;
+import ascore.as.lang.datatype.ASEntier;
+import ascore.as.lang.datatype.ASListe;
+import ascore.as.lang.datatype.ASObjet;
 import ascore.as.modules.core.ASModule;
 import ascore.executeur.Executeur;
 
@@ -16,7 +17,14 @@ public class ModuleBuiltin {
 
     public static ASModule charger(Executeur executeurInstance) {
         var fonctionsBuiltin = new ASFonctionModule[]{
-                // ajouter vos fonctions builtin ici
+                new ASFonctionModule("len", ASTypeBuiltin.rien, new ASParametre[]{
+                        new ASParametre(ASTypeBuiltin.liste, "obj", null)
+                }) {
+                    @Override
+                    public ASObjet<?> executer() {
+                        return new ASEntier(((ASListe) this.getValeurParam("obj")).taille());
+                    }
+                }
         };
         var variablesBuiltin = new ASVariable[]{
                 // ajouter vos variables et vos constantes builtin ici

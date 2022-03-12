@@ -1,17 +1,59 @@
 Ajouter:
   ECHO: '\becho\b'
 
+  CLASS: '\bclass\b'
+
+  PUBLIC: '\bpublic\b'
+
+  FUNCTION: '\bfunction\b'
+
   DELETE: '\bDelete\b'
 
+  HALT_AND_CATCH_FIRE: '\bHALT_AND_CATCH_FIRE\b'
+
+
+  IS_PROBABLY_A: 'isProbablyA'
+  IS_PROBABLY_AN: 'isProbablyAn'
+  ARE_PROBABLY: 'areProbably'
+
+  ACCESS: '->'
+
   ASSIGN: '='
+  UNLESS: '\bunless\b'
 
   type:
     INT: '\d+'
     FLOAT: '(\d+\.\d+)|(\D\.\d+)|(\d+\.\D)'
+    NULL_VALUE: '\bnull\b'
+
+  PARENT_OPEN: '\('
+  PARENT_CLOSE: '\)'
+
+  GREEK_SEMI_COLON: '\u037E'
 
   VARIABLE: '€(?:\w|_)+'
+  FUNCTION_NAME: '(?:\w|_)+'
   TAB: '\t'
   SPACE: ' '
+  COLON: ':'
+  COMA: ','
+  SEMI_COLON: ';'
 
 Ignorer:
-  - '\s+'
+  - '[ \n]+'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

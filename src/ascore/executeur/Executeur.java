@@ -89,8 +89,7 @@ public class Executeur {
     public static void main(String[] args) {
 
         String[] lines = """
-                €abc = 23
-                echo €abc
+                echo €msg
                 """.split("\n");
 
 
@@ -487,8 +486,8 @@ public class Executeur {
          */
         if (debug)
             System.out.println("compilation done in "
-                    + (LocalDateTime.now().toLocalTime().toNanoOfDay() - before.toLocalTime().toNanoOfDay()) / Math.pow(10, 9)
-                    + " seconds\n");
+                               + (LocalDateTime.now().toLocalTime().toNanoOfDay() - before.toLocalTime().toNanoOfDay()) / Math.pow(10, 9)
+                               + " seconds\n");
 
         // set la valeur des anciennes lignes de code aux nouvelles lignes donnees en parametre
         anciennesLignes = lignes;
@@ -600,7 +599,7 @@ public class Executeur {
         if (coordRunTime.toString() == null || !executionActive) {
             if (debug)
                 System.out.println("execution " + (executionActive ? "done" : "interruped") + " in " +
-                        (LocalDateTime.now().toLocalTime().toNanoOfDay() - before.toLocalTime().toNanoOfDay()) / Math.pow(10, 9) + " seconds\n");
+                                   (LocalDateTime.now().toLocalTime().toNanoOfDay() - before.toLocalTime().toNanoOfDay()) / Math.pow(10, 9) + " seconds\n");
             // boolean servant a indique que l'execution est terminee
             executionActive = false;
             reset();

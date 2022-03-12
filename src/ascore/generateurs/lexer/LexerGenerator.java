@@ -36,8 +36,8 @@ public class LexerGenerator {
     }
 
     protected void sortRegle() {
-        ArrayList<Regle> nomVars = reglesAjoutees.stream().filter(r -> r.getNom().equals("NOM_VARIABLE")).collect(Collectors.toCollection(ArrayList::new));
-        reglesAjoutees = reglesAjoutees.stream().filter(r -> !r.getNom().equals("NOM_VARIABLE")).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Regle> nomVars = reglesAjoutees.stream().filter(r -> r.getNom().equals("VARIABLE") || r.getNom().equals("FUNCTION_NAME")).collect(Collectors.toCollection(ArrayList::new));
+        reglesAjoutees = reglesAjoutees.stream().filter(r -> !r.getNom().equals("VARIABLE") && !r.getNom().equals("FUNCTION_NAME")).collect(Collectors.toCollection(ArrayList::new));
 
         Comparator<Regle> longueurRegle = (o1, o2) -> o2.getPattern().length() - o1.getPattern().length();
 
